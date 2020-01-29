@@ -22,8 +22,10 @@ function New-User
     $Username = Read-Host "Enter username"
     $Password = Read-Host -AsSecureString "Enter password"
     New-LocalUser $Username -Password $Password -FullName $Fullname -Description $Description
+    Write-Verbose "User created successfully"
   } Catch {
-     Write-Host "Unable to create local user. Please try again later."-ForegroundColor Red`n
+    Write-Host $_.Exception.Message
+     # Write-Host "Unable to create local user. Please try again later."-ForegroundColor Red`n
   }
 }
 
@@ -34,8 +36,10 @@ function Rename-User
     $ExistingUser = Read-Host "Enter User to rename"
     $NewName = Read-Host "Enter new name"
     Rename-LocalUser -Name $ExistingUser -NewName $NewName
+    Write-Verbose "User renamed successfully"
   } Catch {
-    Write-Host "Unable to rename local user. Please try again later." -ForegroundColor Red`n
+    Write-Host $_.Exception.Message
+    # Write-Host "Unable to rename local user. Please try again later." -ForegroundColor Red`n
   }
 }
 
@@ -45,8 +49,10 @@ function Remove-User
   Try {
     $Username = Read-Host "Enter User to be removed"
     Remove-LocalUser -Name $Username
+    Write-Verbose "User removed successfully"
   } Catch {
-    Write-Host "Unable to remove local user. Please try again later."-ForegroundColor Red`n
+    Write-Host $_.Exception.Message
+    # Write-Host "Unable to remove local user. Please try again later."-ForegroundColor Red`n
   }
 }
 
